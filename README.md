@@ -22,5 +22,11 @@ We can use the SAM API for deployments. Use the following command.
 
 ```
 $ sam deploy --parameter-overrides MailchimpServerPrefix=<PREFIX> MailchimpAPIKey=<KEY> MailchimpAudienceID=<ID>  \
-  --region eu-central-1 --profile tower.dev 
+  --region eu-central-1 \
+  --profile my-profile
 ```
+
+## Usage
+
+```
+$  curl --data-binary '{"email": "example@example.com"}' https://abcdefg123456.execute-api.eu-central-1.amazonaws.com/Prod/
