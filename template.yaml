@@ -12,6 +12,16 @@ Description: >-
 Transform:
 - AWS::Serverless-2016-10-31
 
+Parameters:
+  MailchimpAPIKey:
+    Type: "String"
+      
+  MailchimpServerPrefix:
+    Type: "String"
+
+  MailchimpAudienceID:
+    Type: "String"
+
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
@@ -28,10 +38,9 @@ Resources:
       Description: Take an email address and forward it to Mailchimp
       Environment:
         Variables:
-          # Make table name accessible as environment variable from function code during execution
-          MAILCHIMP_API_KEY: ""
-          MAILCHIMP_SERVER_PREFIX: ""
-          MAILCHIMP_AUDIENCE_ID: ""
+          MAILCHIMP_API_KEY: !Ref MailchimpAPIKey
+          MAILCHIMP_SERVER_PREFIX: !Ref MailchimpServerPrefix
+          MAILCHIMP_AUDIENCE_ID: !Ref MailchimpAudienceID
       Events:
         Api:
           Type: Api
